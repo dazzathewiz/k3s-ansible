@@ -1,7 +1,9 @@
 # Flux Bootstrap
 
+Thanks to: https://docs.technotim.live/posts/flux-devops-gitops/
+
 ## Requirements
-1. Make sure flux is installed `brew install fluxcd/tap/flux`
+1. Make sure flux is installed on local machine `brew install fluxcd/tap/flux`
 2. `github_token` secret defined in the ansible vault
 
 ## Play

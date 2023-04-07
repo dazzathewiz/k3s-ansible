@@ -1,3 +1,6 @@
 ---
 # Timeout to wait for MetalLB services to come up
 metal_lb_available_timeout: 120s
+
+# Whether to configure a 1Password secret for 1password-credentials.json
+install_onepassword_secret: true

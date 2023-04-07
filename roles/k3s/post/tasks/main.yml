@@ -2,6 +2,10 @@
 - name: Deploy metallb pool
   include_tasks: metallb.yml
 
+- name: Deploy 1password-credentials.json secret
+  include_tasks: op-credentials.yml
+  when: "install_onepassword_secret | bool"
+
 - name: Remove tmp directory used for manifests
   file:
     path: /tmp/k3s
