@@ -13,5 +13,7 @@
   environment:
     GITHUB_TOKEN: '{{ github_token }}'
   register: output
+  changed_when: false
 
-- debug: var=output
+- name: Display bootstrap output
+  debug: var=output

@@ -8,7 +8,7 @@ systemd_dir: /etc/systemd/system
 system_timezone: "Australia/Brisbane"
 
 # interface which will be used for flannel
-#flannel_iface: "eth0"
+# flannel_iface: "eth0"
 flannel_iface: "{{ ansible_default_ipv4.interface if ansible_default_ipv4.interface is defined }}"
 
 # apiserver_endpoint is virtual ip-address which will be configured on each master
@@ -17,7 +17,7 @@ apiserver_endpoint: "10.10.1.200"
 # **** Moved to secret.yml ****
 # k3s_token is required  masters can talk together securely
 # this token should be alpha numeric only
-#k3s_token: "xxxxx"
+# k3s_token: "xxxxx"
 
 # The IP on which the node is reachable in the cluster.
 # Here, a sensible default is provided, you can still override
