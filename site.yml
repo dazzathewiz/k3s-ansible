@@ -34,3 +34,9 @@
   roles:
     - role: k3s/post
       become: true
+
+# Customisation: configure Fluxcd
+- hosts: localhost
+  connection: local
+  roles:
+    - role: flux_bootstrap

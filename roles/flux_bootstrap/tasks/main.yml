@@ -1,0 +1,17 @@
+---
+
+- name: Flux bootstrap {{ repo_type }}
+  shell: |
+    flux bootstrap {{ repo_type }} \
+    --components-extra=image-reflector-controller,image-automation-controller \
+    --owner={{ repo_user }} \
+    --repository={{ repo_name }} \
+    --branch={{ repo_branch }} \
+    --path={{ repo_path }} \
+    --personal \
+    --token-auth
+  environment:
+    GITHUB_TOKEN: '{{ github_token }}'
+  register: output
+
+- debug: var=output
