@@ -6,6 +6,9 @@
   include_tasks: op-credentials.yml
   when: "install_onepassword_secret | bool"
 
+- name: Apply longhorn storage node labels
+  include_tasks: storage.yml
+
 - name: Remove tmp directory used for manifests
   file:
     path: /tmp/k3s
