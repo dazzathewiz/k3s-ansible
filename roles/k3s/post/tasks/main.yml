@@ -9,6 +9,9 @@
 - name: Apply longhorn storage node labels
   include_tasks: storage.yml
 
+- name: Grab new kubeconfig
+  include_tasks: kubeconfig.yaml
+
 - name: Remove tmp directory used for manifests
   file:
     path: /tmp/k3s
