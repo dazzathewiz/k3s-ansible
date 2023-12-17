@@ -95,3 +95,4 @@ proxmox_lxc_ct_ids:
 # flux_bootstrap
 flux_repo_user: dazzathewiz
 flux_repo_name: fluxcd
+flux_sops_age_file: ~/.sops/key.txt
