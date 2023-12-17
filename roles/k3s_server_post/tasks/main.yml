@@ -1,6 +1,7 @@
 ---
 - name: Deploy metallb pool
   include_tasks: metallb.yml
+  tags: metallb
 
 - name: Deploy 1password-credentials.json secret
   include_tasks: op-credentials.yml

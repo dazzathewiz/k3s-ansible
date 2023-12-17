@@ -1,14 +1,17 @@
 ---
-
-- hosts: proxmox
+- name: Prepare Proxmox cluster
+  hosts: proxmox
   gather_facts: true
   become: yes
+  environment: "{{ proxy_env | default({}) }}"
   roles:
     - role: proxmox_lxc
       when: proxmox_lxc_configure
 
-- hosts: k3s_cluster
+- name: Prepare k3s nodes
+  hosts: k3s_cluster
   gather_facts: yes
+  environment: "{{ proxy_env | default({}) }}"
   roles:
     - role: lxc
       become: true
@@ -19,20 +22,29 @@
       become: true
     - role: raspberrypi
       become: true
+    - role: k3s_custom_registries
+      become: true
+      when: custom_registries
 
-- hosts: master
+- name: Setup k3s servers
+  hosts: master
+  environment: "{{ proxy_env | default({}) }}"
   roles:
-    - role: k3s/master
+    - role: k3s_server
       become: true
 
-- hosts: node
+- name: Setup k3s agents
+  hosts: node
+  environment: "{{ proxy_env | default({}) }}"
   roles:
-    - role: k3s/node
+    - role: k3s_agent
       become: true
 
-- hosts: master
+- name: Configure k3s cluster
+  hosts: master
+  environment: "{{ proxy_env | default({}) }}"
   roles:
-    - role: k3s/post
+    - role: k3s_server_post
       become: true
 
 # Customisation: configure Fluxcd
