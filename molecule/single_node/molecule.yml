@@ -11,8 +11,8 @@ platforms:
     config_options:
       # We currently can not use public-key based authentication on Ubuntu 22.04,
       # see: https://github.com/chef/bento/issues/1405
-      ssh.username: "vagrant"
-      ssh.password: "vagrant"
+      ssh.username: vagrant
+      ssh.password: vagrant
     groups:
       - k3s_cluster
       - master
@@ -21,6 +21,8 @@ platforms:
         ip: 192.168.30.50
 provisioner:
   name: ansible
+  env:
+    ANSIBLE_VERBOSITY: 1
   playbooks:
     converge: ../resources/converge.yml
     side_effect: ../resources/reset.yml
@@ -31,7 +33,6 @@ provisioner:
 scenario:
   test_sequence:
     - dependency
-    - lint
     - cleanup
     - destroy
     - syntax

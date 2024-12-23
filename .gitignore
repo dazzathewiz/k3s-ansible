@@ -4,3 +4,4 @@ secret.yml
 secrets.yml
 *.log
 ansible.cfg
+kubeconfig
