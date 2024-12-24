@@ -193,6 +193,6 @@ custom_registries_yaml: |
 # flux_bootstrap
 flux_repo_user: dazzathewiz
 flux_repo_name: fluxcd
-flux_sops_age_file: ~/.sops/key.txt
+flux_sops_age_key: "{{ lookup('file', '~/.sops/key.txt') }}"
 
 install_onepassword_secret: yes

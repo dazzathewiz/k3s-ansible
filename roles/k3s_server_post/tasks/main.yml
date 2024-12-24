@@ -18,8 +18,8 @@
   include_tasks: op-credentials.yml
   when: "install_onepassword_secret | bool"
 
-# - name: Deploy sops-age secret
-#   include_tasks: sops-age.yaml
+- name: Deploy sops-age secret
+  include_tasks: sops-age.yaml
 
 - name: Apply longhorn storage node labels
   include_tasks: storage.yml

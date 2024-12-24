@@ -1,9 +1,9 @@
 ---
 
-- name: Copy sops encrytopn keyfile to first master
-  copy:
-    src: "{{ flux_sops_age_file }}"
-    dest: "/tmp/k3s/key.txt"
+- name: Copy sops encryption keyfile to first master
+  template:
+    src: "sops-age-secret.j2"
+    dest: "/tmp/k3s/sops-age-secret.yaml"
     owner: "{{ ansible_user_id }}"
     mode: 0700
   with_items: "{{ groups['master'] }}"
@@ -11,7 +11,7 @@
 
 - name: Create sops-age secret
   command: >-
-    cat /tmp/k3s/key.txt | create secret generic --namespace flux-system --from-file=sops.agekey=/dev/stdin sops-age
+    k3s kubectl apply -f /tmp/k3s/sops-age-secret.yaml
   changed_when: false
   run_once: true
   until: this.rc == 0
