@@ -6,3 +6,16 @@
   command: k3s kubectl label nodes --overwrite {{ item }} node.longhorn.io/create-default-disk=true
   loop: "{{ hostvars[inventory_hostname]['groups']['longhorn_storage'] }}"
   run_once: true
+
+# Disable Multi-Path to prevent errors in Longhorn: https://longhorn.io/kb/troubleshooting-volume-with-multipath/
+- name: Disable Multi-Path on storage nodes in Kubernetes
+  become: yes
+  blockinfile:
+    path: /etc/multipath.conf
+    block: |
+      blacklist {
+        devnode "^sd[a-z0-9]+"
+      }
+  when: "'longhorn_storage' in hostvars[inventory_hostname]['groups']"
+  notify:
+    - restart multipathd
