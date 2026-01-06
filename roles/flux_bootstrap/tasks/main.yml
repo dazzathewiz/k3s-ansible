@@ -3,7 +3,7 @@
 - name: Flux bootstrap {{ repo_type }}
   shell: |
     flux bootstrap {{ repo_type }} \
-    --components-extra=image-reflector-controller,image-automation-controller \
+    --components-extra=image-reflector-controller,image-automation-controller,source-watcher \
     --owner={{ repo_user }} \
     --repository={{ repo_name }} \
     --branch={{ repo_branch }} \
