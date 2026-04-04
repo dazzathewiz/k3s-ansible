@@ -72,3 +72,5 @@
   connection: local
   roles:
     - role: flux_bootstrap
+      tags:
+        - fluxcd
