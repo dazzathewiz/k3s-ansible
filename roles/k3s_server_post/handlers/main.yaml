@@ -1,5 +1,5 @@
 ---
-- name: restart mulitpathd
+- name: restart multipathd
   ansible.builtin.systemd:
     name: multipathd.service
     state: reloaded
